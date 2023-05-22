@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Proshop{% endblock title%}
+{% block header %}
+    <link rel='stylesheet' type='text/css' href="{% static 'css/cart22.css' %}">
+{% endblock header %}
+{% block content %}
+	{% include 'header.html' %}
+	<main>
+		{% if cart_items %}
+			<section class="cart-section">
+				<div class="cart-div">
+					{% for cart_item in cart_items %}
+						<div class="item-div">
+							<img class="item-img" src="/static/{{cart_item.image.url}}">
+							<p class="item-name">{{cart_item.name}}</p>
+							<p class="p">$<span class="item-price" data-itemprice="{{cart_item.price}}">{{cart_item.price}}</span></p>
+							<div class="item-quantity-counter-div">
+								<button class="subtract-add-btn subtract-btn" data-itemid="{{cart_item.id}}">-</button>
+								<p class="counter" data-itemid="{{cart_item.id}}">1</p>
+								<button class="subtract-add-btn add-btn" data-itemid="{{cart_item.id}}">+</button>
+							</div>
+							<form class="delete-btn-form" method="POST">
+								{% csrf_token %}
+								<button class="delete-btn" name="delete-item" value="{{cart_item.id}}">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6" style="width: 23px;">
+										<path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
+									</svg>
+								</button>
+							</form>
+						</div>
+					{% endfor %}
+				</div>
+				<div class="info">
+					<div class="grand-total">
+						<p>Grand Total</p>
+						<p>$<span class="grand-total-price"></span></p>
+					</div>
+					<a href="{% url 'checkout' %}" class="checkout-link">Checkout</a>
+					<a href="{% url 'home' %}" class="continue-shopping">Continue Shopping</a>
+				</div>
+			</section>
+		{% else %}
+			<p class="no-item-in-cart">No item in the Cart, <a href="{% url 'home' %}">Click Here</a> to continue shopping</p>
+		{% endif %}
+	</main>
+	<script type="text/javascript" src="{% static 'js/jquery-3.6.3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/cart5.js' %}"></script>
+{% endblock content %}

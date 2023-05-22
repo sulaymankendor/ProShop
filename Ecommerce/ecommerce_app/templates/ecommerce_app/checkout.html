@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Proshop{% endblock title %}
+{% block header %}
+	<link rel='stylesheet' type='text/css' href="{% static 'css/checkout2.css' %}">
+{% endblock header %}
+{% block content %}
+	<main>
+		<p>Checkout Successful</p>
+		<p>Thanks for shopping with PROSHOP, <a href="{% url 'home' %}">Click here</a> to continue shopping.</p>
+	</main>
+{% endblock content %}

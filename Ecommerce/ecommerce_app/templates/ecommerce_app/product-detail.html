@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{product_name}} Details{% endblock title%}
+{% block header %}
+    <link rel='stylesheet' type='text/css' href="{% static 'css/product-detail37.css' %}">
+{% endblock header %}
+{% block content %}
+	<body style="background-color: #f7f7f7; margin-bottom: 10vh;">
+		<main>
+			{% include 'header.html' %}
+			{% for item in product %}
+				<div class="product-info-div">
+					<div class="img-divv">
+						<img src="/static/{{item.image.url}}" class="product-img">
+					</div>
+					<div class="product-info-div2" data-productid={{item.id}}>
+						<div class="name-price-description">
+							<p class="item-name">{{item.name}}</p>
+							<div class="best-rating1">
+								<div class="customer-ratings best-customer-ratings" data-best-rating-number-of-orange-star='{{best_rating_number_of_orange_star}}'>
+									<p class="review-stars best-review-star" data-number='1'>&#9733</p>
+									<p class="review-stars best-review-star" data-number='2'>&#9733</p>
+									<p class="review-stars best-review-star" data-number='3'>&#9733</p>
+									<p class="review-stars best-review-star" data-number='4'>&#9733</p>
+									<p class="review-stars best-review-star" data-number='5'>&#9733</p>
+								</div>
+								{% if number_of_best_rating <= 1%}
+									<p>{{number_of_best_rating}} best review</p>
+								{% else %}
+									<p>{{number_of_best_rating}} best reviews</p>
+								{% endif%}
+							</div>
+							<p style="font-weight: bold; font-size: 19px;">$<span class="item-price">{{item.price}}</span></p>
+							<p class="description">{{item.description}}</p>
+						</div>
+						{% if item_in_cart == False %}
+							<div class="add-to-cart-btn-div">
+								<button class="add-to-cart-btn">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="product_cart_icon w-6 h-6">
+									<path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
+									</svg>
+								</button>
+							</div>
+						{% else %}
+							<span class="added-to-cart" style="user-select: none;">Added to Cart</span>
+						{% endif %}
+						
+					</div>
+				</div>
+			{% endfor %}
+				<div class="review-div">
+					<h1 class="review-heading">Write Your Review</h1>
+					<p>how do you rate this product?</p>
+					<div class="star-rating">
+						<button class="stars star1" data-number="0" data-color="black">&#9733</button>
+						<button class="stars star2" data-number="1" data-color="black">&#9733</button>
+						<button class="stars star3" data-number="2" data-color="black">&#9733</button>
+						<button class="stars star4" data-number="3" data-color="black">&#9733</button>
+						<button class="stars star5" data-number="4" data-color="black">&#9733</button>
+					</div>
+					<form>
+						<div class="review-label-title">
+							<label>Review Title:</label>
+							<input class="review-title" type="text" name="review-title" maxlength='100'>
+						</div>
+						<div class="review-label-textarea">
+							<label class="review-label">Review:</label>
+							<textarea class="review-textarea" name="review-textarea" maxlength='1500'></textarea>
+						</div>
+						{% if request.user.is_authenticated %}
+							{% if current_user_has_review%}
+								<button class="submit-review">Edit Review</button>
+							{% else %}
+								<button class="submit-review">Submit</button>
+
+							{% endif %}
+						</form>
+					{% else %}
+						<p class='litr'>You must be logged in to submit review. <a href="{% url 'sign-in' %}">Login now</a></p>
+					{% endif %}
+				</div>
+				<div class="review-div2">
+					{% if reviews %}
+					<h1 class='customer-reviews-heading'>Customer Reviews</h1>
+						<div class="best-rating2">
+							<div class="customer-ratings best-customer-ratings" data-best-rating-number-of-orange-star='{{best_rating_number_of_orange_star}}'>
+								<p class="review-stars best-review-star" data-number='1'>&#9733</p>
+								<p class="review-stars best-review-star" data-number='2'>&#9733</p>
+								<p class="review-stars best-review-star" data-number='3'>&#9733</p>
+								<p class="review-stars best-review-star" data-number='4'>&#9733</p>
+								<p class="review-stars best-review-star" data-number='5'>&#9733</p>
+							</div>
+							{% if number_of_best_rating <= 1%}
+								<p>{{number_of_best_rating}} best review</p>
+							{% else %}
+								<p>{{number_of_best_rating}} best reviews</p>
+							{% endif %}
+						</div>
+					<div class="customers-review">
+							{% for review in reviews %}
+								<div class="review-card">
+									<div class="review-user-date-time">
+										<p class="review-username">{{review.user}}</p>
+										<p>{{review.date_and_time}}</p>
+									</div>
+									<div>
+										<div class="customer-ratings" data-number-of-orange-stars="{{review.number_of_orange_stars}}" data-id='{{review.id}}'>
+											<p class="review-stars review-star1" data-number="1" data-color="black" data-id='{{review.id}}'>&#9733</p>
+											<p class="review-stars review-star2" data-number="2" data-color="black" data-id='{{review.id}}'>&#9733</p>
+											<p class="review-stars review-star3" data-number="3" data-color="black" data-id='{{review.id}}'>&#9733</p>
+											<p class="review-stars review-star4" data-number="4" data-color="black" data-id='{{review.id}}'>&#9733</p>
+											<p class="review-stars review-star5" data-number="5" data-color="black" data-id='{{review.id}}'>&#9733</p>
+										</div>
+										<p class='user-review-title'>{{review.review_title}}</p>
+										<p class="review-description">{{review.review}}</p>
+									</div>
+									
+								</div>
+							{% endfor%}
+						{% else %}
+							<span class="no-review2"><span class="no-review"></span> does not have any review.</span>
+						{% endif %}
+					</div>
+				</div>
+			<script type="text/javascript" src="{% static 'js/jquery-3.6.3.js' %}"></script>
+			<script type="text/javascript" src="{% static 'js/product-detail37.js' %}"></script>
+		</main>
+	</body>
+{% endblock content %}

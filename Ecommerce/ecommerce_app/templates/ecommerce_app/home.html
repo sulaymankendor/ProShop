@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Proshop{% endblock title %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+	{% include 'header.html' %}
+	<main class="main-section">
+		<div class="hero-img-div">
+			<div class="image-frame">
+				{% for selected_product in selected_products %}
+					<div class="img-div">
+						<a class="hero-product-name-price-div hero-product" href="{% url 'product-detail' selected_product.name %}" >
+							{{selected_product.name}}
+							(${{selected_product.price}})
+						</a>
+						<a href="{% url 'product-detail' selected_product.name %}">
+							<img class="hero-img" src="/static/{{selected_product.image.url}}">
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% if products %}
+			<p class="products">Products</p>
+			<div class="products-div">
+			{% for product in products %}
+				<div class="product-card" data-numberOfOrangeStars="{{product.number_of_orange_stars}}" data-itemName="{{product.name}}">
+					<a href="{% url 'product-detail' product.name %}">
+						<img src="/static/{{product.image.url}}" class="product-image">
+					</a>
+					<div class="product-info">
+						<a href="{% url 'product-detail' product.name %}" class="product-name-link">
+							<p class="product-name">{{product.name}}</p>
+						</a>
+						<div style="display: flex; align-items: center; width: 100%;">
+								<div class="popular-products-review-stars" style="user-select: none;">
+									<p class="product-review-star" data-number='1' data-numberOfOrangeStars="{{product.number_of_orange_stars}}" data-itemName="{{product.name}}">&#9733</p>
+									<p class="product-review-star" data-number='2' data-numberOfOrangeStars="{{product.number_of_orange_stars}}" data-itemName="{{product.name}}">&#9733</p>
+									<p class="product-review-star" data-number='3' data-numberOfOrangeStars="{{product.number_of_orange_stars}}" data-itemName="{{product.name}}">&#9733</p>
+									<p class="product-review-star" data-number='4' data-numberOfOrangeStars="{{product.number_of_orange_stars}}" data-itemName="{{product.name}}">&#9733</p>
+									<p class="product-review-star" data-number='5' data-numberOfOrangeStars="{{product.number_of_orange_stars}}" data-itemName="{{product.name}}">&#9733</p>
+								</div>
+						</div>
+						<p class="product-price">${{product.price}}</p>
+					</div>
+				</div>
+			{% endfor%}
+		</div>
+		{% else %}
+		<p class="product-is-not-available">The product you searched for is not available at this moment, <a href="{% url 'home' %}">Click here</a> to continue shopping.</p>
+		{% endif %}
+	</main>
+	<script type="text/javascript" src="{% static 'js/jquery-3.6.3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/home3.js' %}"></script>
+{% endblock content %}

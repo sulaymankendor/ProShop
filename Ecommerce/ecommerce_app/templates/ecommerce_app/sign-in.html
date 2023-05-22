@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign-In{% endblock title%}
+{% block header %}
+    <link rel='stylesheet' type='text/css' href="{% static 'css/sign-in7.css' %}">
+{% endblock header %}
+{% block content %}
+	<main>
+		<div class="sign-in-div">
+			{% if user_not_available %}
+				<p class="user-does-not-exist">User does not exist</p>
+			{% endif %}
+			<div class="div-2">
+				<p class="sign-in">Sign in</p>
+				<form method="POST" class="form">
+					{% csrf_token %}
+					<input type="text" placeholder="Username" class="username-password-input username-input" name="username">
+					<input type="password" placeholder="Password" class="username-password-input password-input" name="password">
+					<button class="login-btn">Login</button>
+				</form>
+			</div>
+			<p class="create-an-account-link">Don't have an account? <a href="{% url 'sign-up' %}" style="text-decoration: none;">Sign Up</a></p>
+		</div>
+	</main>
+	<script type="text/javascript" src="{% static 'js/jquery-3.6.3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/sign-in2.js' %}"></script>
+{% endblock content %}

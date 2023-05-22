@@ -1,0 +1,101 @@
+main{
+	height: 100vh;
+}
+.sign-in-div{
+	display: flex;
+	flex-direction: column;
+	max-width: 25%;
+	height: 100%;
+	justify-content: center;
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: -9vh;
+}
+.form{
+	display: flex;
+	flex-direction: column;
+}
+.div-2{
+	border: 1px solid #cdcdcd;
+	padding-top: 10px;
+	padding-left:  15px;
+	padding-right:  15px;
+	padding-bottom: 10%;
+	border-radius: 5px;
+
+}
+.sign-in{
+	font-weight: bold;
+	font-size: 20px;
+}
+.username-password-input{
+	outline: none;
+	padding: 9px 12px;
+	border-radius: 5px;
+	background-color: #e8f0ff;
+	margin-bottom: 5%;
+	border: none;
+	font-size: 16px;
+}
+.username-password-input:focus{
+	outline: none;
+}
+.login-btn{
+	border: none;
+	background-color: blue;
+	padding: 8px 10px;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	font-size: 17px;
+	cursor: pointer;
+}
+.login-btn:hover{
+	background-color: #0000df;
+}
+.login-btn:active{
+	background-color: blue;
+}
+.create-an-account-link{
+	text-align: center;
+}
+.user-does-not-exist{
+	font-size: 19px;
+	margin-bottom: 3vh;
+	background-color: #ddffdd;
+	padding: 10px;
+	border-radius: 40px;
+	text-align: center;
+	width: 94%;
+}
+
+@media(max-width: 1000px) {
+	.div-2 {
+		width: 60vw;
+    	margin-left: -77%;
+    	height: 235px;
+	}
+	.create-an-account-link {
+    	width: 230px;
+	}
+}
+@media(max-width: 650px) {
+
+	.div-2 {
+		width: 80vw;
+    	margin-left: -126%;
+	}
+	.create-an-account-link {
+    	width: 287%;
+   		margin-left: -85%;
+	}
+
+}
+@media(max-height: 600px) {
+	.div-2 {
+		margin-top: 95px; 
+	}	
+	.create-an-account-link {
+		margin-bottom: -35px;
+	}
+}

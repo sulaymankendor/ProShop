@@ -1,0 +1,137 @@
+main{
+	height: 100vh;
+}
+.inputs-divs{
+	display: flex;
+	margin-bottom: 5%;
+}
+.div{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+    max-width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -15vh;
+}
+.div2{
+	border: 1px solid #cdcdcd;
+	border-radius: 5px;
+	padding-top: 10px;
+	padding-left:  15px;
+	padding-right:  15px;
+	padding-bottom: 10%;
+	width: 31.6vw;
+	margin-top: 20%;
+}
+.divs{
+	display: flex;
+	flex-direction: column;
+}
+input{
+	outline: none;
+	padding: 5px 0;
+	padding-right: 15px;
+	padding-left: 12px;
+	margin-right: 6%;
+	font-size: 15.9px;
+	border: 1px solid #cdcdcd;
+	border-radius: 5px;
+	margin-bottom: 4%;
+}
+input:focus{
+	border-color: blue;
+}
+.register{
+	width: 100%;
+	border: none;
+	background-color: blue;
+	color: white;
+	font-weight: bold;
+	font-size: 19px;
+	border-radius: 5px;
+	cursor: pointer;
+    padding: 7px;
+}
+.register:hover{
+	background-color: #0000df;
+}
+.register:active{
+	background-color: blue;
+}
+.sign-up{
+	font-size: 22px;
+	font-weight: bold;
+}
+.label{
+	margin-bottom: 3%;
+}
+.have-an-account{
+	text-align: center;
+	margin-left: 60px;
+}
+.account-exists{
+	font-size: 19px;
+	margin-bottom: -9vh;
+	background-color: #ddffdd;
+	padding: 10px;
+	border-radius: 40px;
+	text-align: center;
+	width: 108%;
+
+}
+
+@media(max-width: 1250px) {
+	.have-an-account {
+    	margin-left: 0px;
+	}
+	form{
+		display: flex;
+    	flex-direction: column;
+    	align-items: center;
+	}
+	input {
+		width: 75%;
+    	margin-right: 70px;
+	}
+	.div2{
+		width: 70vw;
+    	padding-left: 19px;
+    	padding-right: 0px;
+    	margin-left: -70%;
+	}
+	.register {
+    	width: 58%;
+    	margin-left: -40px;
+	}
+}
+@media(max-width: 650px) {
+	.div2 {
+	    min-width: 80vw;
+	    margin-left: -90%;
+	    padding-right: 0px;
+    	padding-left: 18px;
+	}
+	.have-an-account {
+    	width: 204px;
+    	margin-left: -39px;
+	}
+	input{
+		width: 75%;
+		font-size: 15px;
+	}
+	.register {
+    	width: 60%;
+    	margin-left: -15px;
+	}
+	.sign-up {
+    	margin-bottom: 10%;
+	}
+
+}
+@media(max-height: 600px) {	
+	.have-an-account {
+		margin-bottom: -100px;
+	}
+}

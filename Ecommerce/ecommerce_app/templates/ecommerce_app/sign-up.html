@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign-In{% endblock title%}
+{% block header %}
+    <link rel='stylesheet' type='text/css' href="{% static 'css/sign-up10.css' %}">
+{% endblock header %}
+{% block content %}
+	<main>
+		<div class="div">
+			{% if account_exist %}
+				<p class="account-exists">This account already exists</p>
+			{% endif %}
+			<div class="div2">
+				<p class="sign-up">Sign up</p>
+				<form method="POST">
+					{% csrf_token %}
+					<div class="inputs-divs">
+						<div class="divs">
+							<label class="label">Username</label>
+							<input class="username" type="text" placeholder="Enter Username..." name="username">
+						</div>
+						<div class="divs">
+							<label class="label">Email Address</label>
+							<input class="email-address" type="email" placeholder="Email..." name="email">
+						</div>
+					</div>
+					<div class="inputs-divs">
+						<div class="divs">
+							<label class="label">Create password</label>
+							<input class="create-password" type="password" placeholder="Password..." name="password">
+						</div>
+						<div class="divs">
+							<label class="label">Repeat Password</label>
+							<input class="repeat-password" type="password" placeholder="Confirm Password..." name="confirm-password">
+						</div>
+					</div>
+					<button class="register register-btn">Register</button>
+				</form>
+			</div>
+			<p class="have-an-account">Have an account? <a href="{% url 'sign-in' %}" style="text-decoration: none;">Log In</a></p>
+		</div>
+	</main>
+	<script type="text/javascript" src="{% static 'js/jquery-3.6.3.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/sign-up2.js' %}"></script>
+{% endblock content %}
