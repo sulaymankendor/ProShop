@@ -356,7 +356,7 @@
 	}
 	.product-info-div {
 		margin-top: 280px;
-    	max-width: 86%;
+    	max-width: 93%;
     	height: 720px;
     	margin-left: auto;
 
@@ -387,6 +387,7 @@
 
 @media(max-height: 650px) {
 	.product-info-div {
-		margin-top: 130px;
+		margin-top: 200px;
+		
 	}
 }
